@@ -2,5 +2,5 @@
 	"name": "Retro-ken",
 	"description": "Retrospective bot for Slack",
 	"respository": "https://github.com/dansteele/retro-ken",
-	"keywords": ["slack", "integration", "retrospectiev"],
+	"keywords": ["slack", "integration", "retrospective"],
 }
