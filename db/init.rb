@@ -1,3 +1,4 @@
+raise StandardError.new('Specify RACK_ENV') unless ENV['RACK_ENV']
 ActiveRecord::Base.establish_connection(
   adapter:  'postgresql',
   password: ENV['RETRO_KEN_DATABASE_PASSWORD'],
