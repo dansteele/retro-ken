@@ -5,4 +5,4 @@ before_install:
 script:
   - RACK_ENV=test rake db:create
   - RACK_ENV=test rake db:migrate
-  - RACK_ENV=test rspec
+  - RACK_ENV=test bundle exec rspec
