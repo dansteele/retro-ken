@@ -2,7 +2,7 @@ ROOT_LOCATION = File.dirname(__FILE__).freeze
 require 'rubygems'
 require 'bundler'
 
-Bundler.setup :default, :development
+Bundler.setup :default, :development, :test
 
 require 'pry'
 
