@@ -2,6 +2,7 @@ rvm:
   - 2.4.0
 before_install:
   - gem update --system
-before_script:
-  - rake db:create
-  - rake db:migrate
+script:
+  - RACK_ENV=test rake db:create
+  - RACK_ENV=test rake db:migrate
+  - RACK_ENV=test rspec
