@@ -1,6 +1,12 @@
 AllCops:
   DisabledByDefault: true
 
+#################### Security ############################
+
+Security/Eval:
+  Description: 'The use of eval represents a serious security risk.'
+  Enabled: true
+
 #################### Lint ################################
 
 Lint/AmbiguousOperator:
@@ -81,9 +87,6 @@ Lint/EnsureReturn:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-return-ensure'
   Enabled: true
 
-Lint/Eval:
-  Description: 'The use of eval represents a serious security risk.'
-  Enabled: true
 
 Lint/FormatParameterMismatch:
   Description: 'The number of parameters to format/sprint must match the fields.'
