@@ -6,7 +6,7 @@ namespace :db do
     raise StandardError.new('Specify RACK_ENV') unless ENV['RACK_ENV']
     require 'pg'
     conn = PG.connect(dbname: 'postgres')
-    conn.exec("CREATE DATABASE retro_ken_#{ENV['RACK_ENV']}")
+    puts conn.exec("CREATE DATABASE retro_ken_#{ENV['RACK_ENV']}")
   end
 
   desc "Migrates the db"
