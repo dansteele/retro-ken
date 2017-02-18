@@ -22,4 +22,5 @@ group :test do
   gem 'rack-test'
   gem 'vcr'
   gem 'webmock'
+  gem 'database_cleaner'
 end
