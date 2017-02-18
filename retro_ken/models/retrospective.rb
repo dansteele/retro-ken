@@ -4,7 +4,11 @@ class Retrospective < ApplicationRecord
 
   class << self
 
-    def finish
+    def start!
+      create! if last.finished?
+    end
+
+    def finish!
       last.update(finished: true)
     end
 
