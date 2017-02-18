@@ -28,5 +28,13 @@ describe RetroKen::Commands::Retro do
       expect(Message.count).to be 1
       expect(Message.last.positive?).to be true
     end
+
+    it 'adds a negative message to the retrospective' do
+      expect(message: '- I have all the things').to(
+        respond_with_slack_message(/./)
+      )
+      expect(Message.count).to be 1
+      expect(Message.last.positive?).to be false
+    end
   end
 end
