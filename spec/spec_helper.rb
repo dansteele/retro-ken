@@ -4,6 +4,7 @@ require 'slack-ruby-bot/rspec'
 
 ENV['RACK_ENV'] = 'test'
 require 'database_cleaner'
+require 'faker'
 
 Dir[File.join(File.dirname(__FILE__), 'support', '**/*.rb')].each do |file|
   require file

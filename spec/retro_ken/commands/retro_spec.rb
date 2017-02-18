@@ -12,7 +12,6 @@ describe RetroKen::Commands::Retro do
   end
 
   describe 'when a retrospective is active' do
-
     before { Retrospective.create! }
 
     it 'stops a retrospective' do
@@ -37,4 +36,27 @@ describe RetroKen::Commands::Retro do
       expect(Message.last.positive?).to be false
     end
   end
+
+  describe 'after a retrospective' do
+    before do
+      retro = Retrospective.create!
+      8.times do |t|
+        Message.create positive: t.even?,
+                       message: Faker::Company.catch_phrase,
+                       retrospective: retro
+      end
+    end
+
+    it 'prints a quick summary' do
+      expect(message: 'retroken retro quick summary').to(
+        respond_with_slack_message(<<-RESPONSE
+          There were 4 positive and 4 negative comments.
+        RESPONSE
+        .strip
+        )
+      )
+    end
+
+  end
+
 end

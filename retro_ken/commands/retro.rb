@@ -13,6 +13,11 @@ module RetroKen
                    text: 'Finished! Say `RetroKen summary` to summarise.'
       end
 
+      command 'retro quick summary' do |client, data, _match|
+        client.say channel: data.channel,
+                   text: Retrospective.quick_summary
+      end
+
       operator '+', '-' do |client, data, match|
         bool, message = match.captures
         is_positive = (bool == '+')
