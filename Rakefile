@@ -1,9 +1,10 @@
 ROOT_LOCATION = File.dirname(__FILE__).freeze
 require 'rubygems'
 require 'bundler'
-require 'pry'
 
-Bundler.setup :default, :development
+Bundler.setup :default, :development, :test
+
+require 'pry'
 
 unless ENV['RACK_ENV'] == 'production'
   require 'rspec/core'
