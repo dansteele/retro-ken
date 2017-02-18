@@ -1,3 +1,3 @@
-require 'retro_ken/commands/retro'
-require 'retro_ken/commands/about'
-require 'retro_ken/commands/help'
+Dir[File.join(File.dirname(__FILE__), 'commands', '**/*.rb')].each do |file|
+  require file
+end

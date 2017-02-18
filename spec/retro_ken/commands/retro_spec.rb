@@ -7,7 +7,7 @@ describe RetroKen::Commands::Retro do
 
   it 'starts a retrospective' do
     expect(message: 'retroken retro start').to(
-      respond_with_slack_message('Started! Say `RetroKen stop` to end.')
+      respond_with_slack_message('Started! Say `RetroKen retro stop` to end.')
     )
   end
 
@@ -16,12 +16,14 @@ describe RetroKen::Commands::Retro do
 
     it 'stops a retrospective' do
       expect(message: 'retroken retro stop').to(
-      respond_with_slack_message('Finished! Say `RetroKen summary` to summarise.')
+        respond_with_slack_message(
+          'Finished! Say `RetroKen retro summary quick` to summarise.'
+        )
       )
     end
 
     it 'adds a positive message to the retrospective' do
-      expect(message: '+ I love all the things').to(
+      expect(message: '+ I love all the things', ts: 1234.5).to(
         respond_with_slack_message(/!/)
       )
       expect(Message.count).to be 1
@@ -48,13 +50,17 @@ describe RetroKen::Commands::Retro do
     end
 
     it 'prints a quick summary' do
-      expect(message: 'retroken retro quick summary').to(
+      expect(message: 'retroken retro summary quick').to(
         respond_with_slack_message(<<-RESPONSE
           There were 4 positive and 4 negative comments.
         RESPONSE
         .strip
         )
       )
+    end
+
+    it 'accepts reactions' do
+      skip 'TODO'
     end
 
   end

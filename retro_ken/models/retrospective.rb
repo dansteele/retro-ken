@@ -5,7 +5,7 @@ class Retrospective < ApplicationRecord
   class << self
 
     def start!
-      create! if last.finished?
+      create! if last.nil? || last.finished?
     end
 
     def finish!

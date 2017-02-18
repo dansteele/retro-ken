@@ -2,19 +2,24 @@ module RetroKen
   module Commands
     class Retro < SlackRubyBot::Commands::Base
 
-      command 'retro start' do |client, data, _match|
+      command 'retro start' do |client, data|
         Retrospective.start!
         client.say channel: data.channel,
                    text: 'Started! Say `RetroKen retro stop` to end.'
       end
 
-      command 'retro stop' do |client, data, _match|
+      command 'retro stop' do |client, data|
         Retrospective.finish!
         client.say channel: data.channel,
-                   text: 'Finished! Say `RetroKen retro <summary || quick summary>` to summarise.'
+                   text: 'Finished! Say `RetroKen retro summary quick` to summarise.'
       end
 
-      command 'retro quick summary' do |client, data, _match|
+      command 'retro summary quick' do |client, data|
+        client.say channel: data.channel,
+                   text: Retrospective.quick_summary
+      end
+
+      command 'retro summary best' do |client, data|
         client.say channel: data.channel,
                    text: Retrospective.quick_summary
       end
@@ -22,9 +27,10 @@ module RetroKen
       operator '+', '-' do |client, data, match|
         bool, message = match.captures
         is_positive = (bool == '+')
-        Message.create! positive: is_positive,
-                        message: message,
-                        retrospective: Retrospective.last
+        Message.create! message: message,
+                        positive: is_positive,
+                        retrospective: Retrospective.last,
+                        ts: data&.ts
        client.say channel: data.channel,
                   text: Message.response(is_positive)
       end
