@@ -13,4 +13,7 @@ class Message < ApplicationRecord
     end
   end
 
+  def representation
+    positive? ? ':white_check_mark:' : ':no_entry_sign:'
+  end
 end

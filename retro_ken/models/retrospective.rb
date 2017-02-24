@@ -19,7 +19,9 @@ class Retrospective < ApplicationRecord
     end
 
     def summary
-      last.messages
+      last
+        .messages
+        .where(in_summary: true)
         .where.not(reactions_count: 0)
         .joins(:reactions)
         .order('reactions_count DESC')
