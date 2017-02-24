@@ -7,9 +7,19 @@ module RetroKen
       end
 
       command 'retro summary' do |client, data|
+        res = Retrospective.summary.map do |item|
+          Summary.format_reactions(item)
+        end
         client.say channel: data.channel,
-                   text: Retrospective.summary
+                   text: res.join("\n\n")
       end
+
+      def self.format_reactions(item)
+        [item[:message] + "\n", item[:reactions].map do |r|
+          [r[:reaction], r[:count], '       ']
+        end].join
+      end
+
     end
   end
 end

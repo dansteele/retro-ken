@@ -19,15 +19,15 @@ class Retrospective < ApplicationRecord
     end
 
     def summary
-      last
+      msgs = last
         .messages
         .where(in_summary: true)
         .where.not(reactions_count: 0)
         .joins(:reactions)
+        .order('positive DESC')
         .order('reactions_count DESC')
-        .pluck(:message)
         .uniq
-        .join("\n")
+        .map { |m| { message: m.message, reactions: m.gather_reactions } }
     end
 
   end
