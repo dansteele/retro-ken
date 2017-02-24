@@ -4,7 +4,8 @@ module SpecHelper
     8.times do |t|
       Message.create positive: t.even?,
       message: Faker::Company.catch_phrase,
-      retrospective: retro
+      retrospective: retro,
+      in_summary: true
     end
     Message.all.each_with_index do |m, i|
       next if i == 0 # Ensure there's one with no reactions

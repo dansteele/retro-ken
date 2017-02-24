@@ -17,7 +17,7 @@ describe RetroKen::Commands::Retro do
     it 'stops a retrospective' do
       expect(message: 'retroken retro stop').to(
         respond_with_slack_message(
-          'Finished! Say `RetroKen retro summary quick` to summarise.'
+          'Finished! Say `RetroKen retro messages` to create voteable messages.'
         )
       )
     end
