@@ -40,14 +40,7 @@ describe RetroKen::Commands::Retro do
   end
 
   describe 'after a retrospective' do
-    before do
-      retro = Retrospective.create!
-      8.times do |t|
-        Message.create positive: t.even?,
-                       message: Faker::Company.catch_phrase,
-                       retrospective: retro
-      end
-    end
+    before { SpecHelper.setup_retrospective }
 
     it 'prints a quick summary' do
       expect(message: 'retroken retro summary quick').to(
@@ -60,7 +53,7 @@ describe RetroKen::Commands::Retro do
     end
 
     it 'accepts reactions' do
-      skip 'TODO'
+      skip
     end
 
   end

@@ -19,9 +19,9 @@ module RetroKen
                    text: Retrospective.quick_summary
       end
 
-      command 'retro summary best' do |client, data|
+      command 'retro summary' do |client, data|
         client.say channel: data.channel,
-                   text: Retrospective.quick_summary
+                   text: Retrospective.summary
       end
 
       operator '+', '-' do |client, data, match|

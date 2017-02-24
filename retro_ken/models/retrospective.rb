@@ -18,5 +18,15 @@ class Retrospective < ApplicationRecord
         "#{msgs.where(positive: false).size} negative comments."
     end
 
+    def summary
+      last.messages
+        .where.not(reactions_count: 0)
+        .joins(:reactions)
+        .order('reactions_count DESC')
+        .pluck(:message)
+        .uniq
+        .join("\n")
+    end
+
   end
 end
