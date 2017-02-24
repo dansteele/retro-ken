@@ -18,14 +18,9 @@ module RetroKen
           ts = client.web_client.chat_postMessage(
             channel: data.channel,
             text: [m.representation, m.message].join(' '),
-            as_user: false,
-            id: m.id
+            as_user: true
           )['ts']
-          Message.create ts: ts,
-                         in_summary: true,
-                         message: m.message,
-                         positive: m.positive?,
-                         retrospective: Retrospective.last
+          m.update({ ts: ts, in_summary: true })
         end
       end
 
