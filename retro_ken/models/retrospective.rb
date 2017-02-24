@@ -19,7 +19,7 @@ class Retrospective < ApplicationRecord
     end
 
     def summary
-      msgs = last
+      last
         .messages
         .where(in_summary: true)
         .where.not(reactions_count: 0)
