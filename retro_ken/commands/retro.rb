@@ -4,7 +4,9 @@ module RetroKen
       command 'retro start' do |client, data|
         Retrospective.start!
         client.say channel: data.channel,
-                   text: 'Started! Say `RetroKen retro stop` to end.'
+                   text: 'Say `RetroKen retro stop` to end.'
+        client.say channel: data.channel,
+                   text: 'https://media.giphy.com/media/26DOs997h6fgsCthu/giphy.gif'
       end
 
       command 'retro stop' do |client, data|
