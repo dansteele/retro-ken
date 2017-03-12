@@ -38,16 +38,12 @@ describe RetroKen::Commands::Retro do
 
     describe 'anonymity'
       it 'is not given if not requested' do
-        expect(message: '+ I am being public').to(
-          respond_with_slack_message(/./)
-        )
+        expect(message: '+ I am being public').to(respond_with_slack_message(/./))
         expect(Message.last.user).to eq 'user'
       end
 
       it 'is given if requested' do
-        expect(message: '- I am not being public anon').to(
-          respond_with_slack_message(/./)
-        )
+        expect(message: '- I am being private').to(respond_with_slack_message(/./))
         expect(Message.last.user).to eq 'Anon'
       end
   end
