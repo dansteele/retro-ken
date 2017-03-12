@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe RetroKen::Commands::Default do
-  def app
-    RetroKen::Bot.instance
-  end
   it 'responds to lowercase retroken' do
     expect(message: 'retroken').to respond_with_slack_message(RetroKen::ABOUT)
   end
