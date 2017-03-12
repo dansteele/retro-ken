@@ -15,7 +15,7 @@ module RetroKen
       end
 
       def self.format_reactions(item)
-        [item[:message] + "\n", item[:reactions].map do |r|
+        [item[:message], " - #{item[:user]}\n", item[:reactions].map do |r|
           [r[:reaction], r[:count], '       ']
         end].join
       end

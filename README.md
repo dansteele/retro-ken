@@ -22,6 +22,23 @@ retro start
 retro stop
 ```
 
+### Adding a thought
+A thought is either a 'continue' or 'stop' thought.
+You can send a thought to Ken when there's a retrospective running.
+Like the way something is being done in your company?
+Message ken with something like
+
+`+ I love the new reviewing process`
+
+Want something to change?
+
+`- The new reviewing process is too time consuming`
+
+### Anonymity
+Append 'anon' to the end of your thought. Anonymity is applied to _each_ thought. This enables those who are worried about speaking up about a certain issue to do so.
+
+`- Directionless company branding`
+
 ### Voting
 To spit out a list for people to vote on, use
 ```

@@ -7,6 +7,7 @@ class CreateMessages < ActiveRecord::Migration[5.0]
       t.boolean     :positive,         null: false
       t.boolean     :in_summary,       default: false
       t.integer     :reactions_count,  default: 0
+      t.string      :user,             default: 0
       t.timestamps
     end
   end

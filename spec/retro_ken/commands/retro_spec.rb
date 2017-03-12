@@ -7,7 +7,9 @@ describe RetroKen::Commands::Retro do
 
   it 'starts a retrospective' do
     expect(message: 'retroken retro start').to(
-      respond_with_slack_message('Started! Say `RetroKen retro stop` to end.')
+      respond_with_slack_message(
+        'Say `RetroKen retro stop` to end. https://media.giphy.com/media/26DOs997h6fgsCthu/giphy.gif'
+      )
     )
   end
 
@@ -31,12 +33,27 @@ describe RetroKen::Commands::Retro do
     end
 
     it 'adds a negative message to the retrospective' do
-      expect(message: '- I have all the things').to(
+      expect(message: '- I hate all the things').to(
         respond_with_slack_message(/./)
       )
       expect(Message.count).to be 1
       expect(Message.last.positive?).to be false
     end
+
+    describe 'anonymity'
+      it 'is not given if not requested' do
+        expect(message: '+ I am being public').to(
+          respond_with_slack_message(/./)
+        )
+        expect(Message.last.user).to eq 'user'
+      end
+
+      it 'is given if requested' do
+        expect(message: '- I am not being public anon').to(
+          respond_with_slack_message(/./)
+        )
+        expect(Message.last.user).to eq 'Anon'
+      end
   end
 
   describe 'after a retrospective' do
@@ -49,6 +66,12 @@ describe RetroKen::Commands::Retro do
         RESPONSE
         .strip
         )
+      )
+    end
+
+    it 'prints a full summary' do
+      expect(message: 'retroken retro summary').to(
+        respond_with_slack_message(pattern: "#{Message.last.message} - #{Message.last.user}")
       )
     end
 

@@ -6,6 +6,7 @@ class Message < ApplicationRecord
   before_save do |msg|
     msg.ts = msg.ts || rand # TODO: Get rid of
     msg.message = message.strip
+    msg.user = anon? ? 'Anon' : msg.user
   end
 
   def self.response(is_positive)
@@ -14,6 +15,10 @@ class Message < ApplicationRecord
     else
       %w(Interesting. Agreed. Well\ said. Definitely. Thanks.).sample
     end
+  end
+
+  def anon?
+    ['anon', 'anon ', 'anonymous', 'anonymous '].any? { |word| message.include? word }
   end
 
   def representation

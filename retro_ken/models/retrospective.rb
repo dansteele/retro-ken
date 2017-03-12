@@ -27,7 +27,7 @@ class Retrospective < ApplicationRecord
         .order('positive DESC')
         .order('reactions_count DESC')
         .uniq
-        .map { |m| { message: m.message, reactions: m.gather_reactions } }
+        .map { |m| { message: m.message, reactions: m.gather_reactions, user: m.user } }
     end
 
   end
