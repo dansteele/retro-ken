@@ -43,7 +43,7 @@ describe RetroKen::Commands::Retro do
       end
 
       it 'is given if requested' do
-        expect(message: '- I am being private').to(respond_with_slack_message(/./))
+        expect(message: '- I am being private anon').to(respond_with_slack_message(/./))
         expect(Message.last.user).to eq 'Anon'
       end
   end

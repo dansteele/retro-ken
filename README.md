@@ -37,7 +37,7 @@ Want something to change?
 ### Anonymity
 Append 'anon' to the end of your thought. Anonymity is applied to _each_ thought. This enables those who are worried about speaking up about a certain issue to do so.
 
-`- Directionless company branding`
+`- Directionless company branding anon`
 
 ### Voting
 To spit out a list for people to vote on, use
