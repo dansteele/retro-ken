@@ -1,12 +1,14 @@
 class Message < ApplicationRecord
 
+  ANONYMOUS_WORDS = ['anon', 'anon ', 'anonymous', 'anonymous '].freeze
+
   belongs_to :retrospective
   has_many :reactions
 
   before_save do |msg|
     msg.ts = msg.ts || rand # TODO: Get rid of
     msg.message = message.strip
-    msg.user = anon? ? 'Anon' : msg.user
+    msg.user = check_anonymity
   end
 
   def self.response(is_positive)
@@ -18,7 +20,16 @@ class Message < ApplicationRecord
   end
 
   def anon?
-    ['anon', 'anon ', 'anonymous', 'anonymous '].any? { |word| message.include? word }
+    ANONYMOUS_WORDS.any? { |word| message.include? word }
+  end
+
+  def check_anonymity
+    if anon?
+      self.message = self.message.gsub(Regexp.union(ANONYMOUS_WORDS), '')
+      'Anon'
+    else
+      user
+    end
   end
 
   def representation
