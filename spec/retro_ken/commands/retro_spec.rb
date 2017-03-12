@@ -67,7 +67,7 @@ describe RetroKen::Commands::Retro do
 
     it 'prints a full summary' do
       expect(message: 'retroken retro summary').to(
-        respond_with_slack_message(pattern: "#{Message.last.message} - <@#{Message.last.user}>")
+        respond_with_slack_message(/#{Message.last.message} - <@#{Message.last.user}>/)
       )
     end
 
