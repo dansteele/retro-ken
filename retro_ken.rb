@@ -1,4 +1,4 @@
-require 'pry'
+require 'pry' unless ENV['RACK_ENV'] == 'production'
 require 'slack-ruby-bot'
 require 'active_record'
 require 'pg'
