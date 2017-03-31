@@ -8,9 +8,9 @@ gem 'sinatra'
 gem 'celluloid-io'
 gem 'activerecord'
 gem 'pg'
+gem 'rake'
 
 group :development, :test do
-  gem 'rake'
   gem 'rubocop'
   gem 'foreman'
   gem 'rb-readline'
