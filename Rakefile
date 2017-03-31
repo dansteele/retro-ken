@@ -4,8 +4,6 @@ require 'bundler'
 
 Bundler.setup
 
-require 'pry'
-
 unless ENV['RACK_ENV'] == 'production'
   require 'rspec/core'
   require 'rspec/core/rake_task'
