@@ -3,10 +3,10 @@ module SpecHelper
     retro = Retrospective.create!
     8.times do |t|
       Message.create positive: t.even?,
-      message: Faker::Company.catch_phrase,
-      retrospective: retro,
-      in_summary: true,
-      user: Faker::Name.first_name
+                     message: Faker::Company.catch_phrase,
+                     retrospective: retro,
+                     in_summary: true,
+                     user: Faker::Name.first_name
     end
     Message.all.each_with_index do |m, i|
       next if i == 0 # Ensure there's one with no reactions

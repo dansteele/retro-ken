@@ -49,7 +49,10 @@ describe RetroKen::Commands::Retro do
   end
 
   describe 'after a retrospective' do
-    before { SpecHelper.setup_retrospective }
+    before do
+      SpecHelper.setup_retrospective
+      Message.last.reactions << Reaction.new(reaction: Faker::SlackEmoji.emoji.tr(':', ''))
+    end
 
     it 'prints a quick summary' do
       expect(message: 'retroken retro summary quick').to(
