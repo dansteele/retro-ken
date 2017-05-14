@@ -5,7 +5,7 @@ module RetroKen
         Retrospective.start!
         client.say channel: data.channel,
                    text: %w(Say `RetroKen retro stop` to end.
-                   https://media.giphy.com/media/26DOs997h6fgsCthu/giphy.gif).join(' ')
+		   https://media.giphy.com/media/26DOs997h6fgsCthu/giphy.gif .  For more information on using Retro-Ken, just say `help` in a message to me.).join(' ')
       end
 
       command 'retro stop' do |client, data|
