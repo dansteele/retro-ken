@@ -3,11 +3,7 @@ require 'spec_helper'
 describe RetroKen::Commands::Retro do
   it 'starts a retrospective' do
     expect(message: 'retroken retro start').to(
-      respond_with_slack_message(
-        'Say `RetroKen retro stop` to end. https://media.giphy.com/media/26DOs997h6fgsCthu/giphy.gif'
-      ).and \
-      respond_with_slack_message('Need help?  Just ask me for `help` in a private message.')
-    )
+      respond_with_slack_message('Say `RetroKen retro stop` to end. https://media.giphy.com/media/26DOs997h6fgsCthu/giphy.gif'))
   end
 
   describe 'when a retrospective is active' do
