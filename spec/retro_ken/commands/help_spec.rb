@@ -13,13 +13,14 @@ describe RetroKen::Commands::Help do
   describe 'when a retrospective is active' do
     before { Retrospective.create! }
     it 'help' do
-      expect(message: 'retroken help').to response_with_slack_message('<<~HERE
+      expect(message: 'retroken help').to response_with_slack_message(<<~HERE
         To start a retrospective, tell me `retro start`.
         To end a retrospective, tell me `retro stop`.
         To get a voteable list, tell me `retro message`.
         To get a summary, tell me `retro summary`.
-        HERE')
-      )
+        HERE
+        )
+
     end
   end
 end
