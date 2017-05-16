@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RetroKen::Commands::Help do
   it 'help' do
-    expect(message: 'retroken help').to respond_with_slack_message("To start a retrospective, tell me `retro start`.\nTo end a retrospective, tell me `retro sto... list, tell me `retro message`.\nTo get a summary, tell me `retro summary`.\nSee https://github.com/dansteele/retro-ken, please.\n")
+    expect(message: 'retroken help').to respond_with_slack_message("To start a retrospective, tell me `retro start`.\nTo end a retrospective, tell me `retro stop`.\nTo get a voteable list, tell me `retro message`.\nTo get a summary, tell me `retro summary`.\nSee https://github.com/dansteele/retro-ken, please.\n")
   end
 
   describe 'when a retrospective is active' do
