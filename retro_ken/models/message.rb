@@ -7,8 +7,8 @@ class Message < ApplicationRecord
 
   before_save do |msg|
     msg.ts = msg.ts || rand # TODO: Get rid of
-    msg.message = message.strip
-    msg.user = check_anonymity
+    msg.user = 'Anon' if anon?
+    msg.message = clean_message
   end
 
   def self.response(is_positive)
@@ -23,13 +23,8 @@ class Message < ApplicationRecord
     ANONYMOUS_WORDS.any? { |word| message.include? word }
   end
 
-  def check_anonymity
-    if anon?
-      self.message = self.message.gsub(Regexp.union(ANONYMOUS_WORDS), '')
-      'Anon'
-    else
-      user
-    end
+  def clean_message
+    self.message.gsub(Regexp.union(ANONYMOUS_WORDS), '').strip
   end
 
   def representation
@@ -39,10 +34,10 @@ class Message < ApplicationRecord
   def gather_reactions
     reactions.pluck(:reaction).each_with_object(Hash.new(0)) do |reaction, count|
       count[":#{reaction}:"] += 1
-    end.map do |combo|
+    end.map do |reaction, count|
       {
-        reaction: combo.first,
-        count: combo.second
+        reaction: reaction,
+        count: count
       }
     end
   end

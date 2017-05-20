@@ -18,7 +18,7 @@ module RetroKen
         Retrospective.last.messages.each do |m|
           ts = client.web_client.chat_postMessage(
             channel: data.channel,
-            text: [m.representation, m.message].join(' '),
+            text: m.message,
             as_user: true
           )['ts']
           m.update({ ts: ts, in_summary: true })
