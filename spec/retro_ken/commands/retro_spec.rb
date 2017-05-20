@@ -33,6 +33,14 @@ describe RetroKen::Commands::Retro do
       expect(Message.last.positive?).to be false
     end
 
+    it 'can bulk-add messages' do
+      expect(message: "+ I love all the things \n- I hate all the things", ts: 1234.5).to(
+        respond_with_slack_message('A list - quick and easy!')
+      )
+      expect(Message.count).to be 2
+      expect(Message.last.positive?).to be false
+    end
+
     describe 'anonymity'
       it 'is not given if not requested' do
         expect(message: '+ I am being public').to(respond_with_slack_message(/./))

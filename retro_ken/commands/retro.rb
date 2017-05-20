@@ -27,6 +27,7 @@ module RetroKen
 
       operator '+', '-' do |client, data, match|
         bool, message = match.captures
+        Message.contains_many?(message)
         is_positive = (bool == '+')
         Message.create! message: message,
                         positive: is_positive,

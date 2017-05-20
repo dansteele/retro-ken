@@ -19,6 +19,13 @@ class Message < ApplicationRecord
     end
   end
 
+  def self.contains_many?(message)
+    ['\n+', '\n-'].map do |matcher|
+      binding.pry
+      message.count(matcher)
+    end.max > 0
+  end
+
   def anon?
     ANONYMOUS_WORDS.any? { |word| message.include? word }
   end
