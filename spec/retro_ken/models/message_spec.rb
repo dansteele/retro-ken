@@ -12,7 +12,7 @@ RSpec.describe Message do
     end
 
     it 'parses multiple messages' do
-      expect(Message.split_messages(single)).to eq []
+      expect(Message.split_messages(single)).to eq [single]
       expect(Message.split_messages(multi)).to eq [single, "\n- Sad"]
     end
   end

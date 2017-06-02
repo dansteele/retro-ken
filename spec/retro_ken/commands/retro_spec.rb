@@ -35,7 +35,7 @@ describe RetroKen::Commands::Retro do
 
     it 'can bulk-add messages' do
       expect(message: "+ I love all the things \n- I hate all the things", ts: 1234.5).to(
-        respond_with_slack_message('A list - quick and easy!')
+        respond_with_slack_message('So many things! :sweat_smile:')
       )
       expect(Message.count).to be 2
       expect(Message.last.positive?).to be false

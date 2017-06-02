@@ -22,32 +22,22 @@ class Message < ApplicationRecord
     end
 
     def contains_many?(message)
-      split_messages(message).length > 0
+      split_messages(message).length > 1
     end
 
     def split_messages(message)
-      previous = []
-      message.split("\n").map_with_index do |match|
-        previous << match
-        break if match.starts_with? '+', '-'
-      end
+      matches = message.scan(/([+-]+[\s\w[\\n]]*)/).flatten
+      matches.each_with_object([]) { |match, arr| arr << match.chomp("\n") }
     end
 
-    def create_bulk_if_needed
-      if contains_many?(message)
-        split_messages.each do |msg|
-          create_from_data(message: msg, is_positive: bool, data: data)
-        end
+    def create_from_data(message, data)
+      split_messages(message).each do |msg|
+        create! message: msg,
+                positive: msg.starts_with?('+'),
+                retrospective: Retrospective.last,
+                ts: data&.ts,
+                user: data.user
       end
-    end
-
-    def create_from_data(message:, is_positive:, data:)
-      create_bulk_if_needed
-      create! message: message,
-              positive: is_positive,
-              retrospective: Retrospective.last,
-              ts: data&.ts,
-              user: data.user
     end
 
   end

@@ -27,9 +27,13 @@ module RetroKen
 
       operator '+', '-' do |client, data, match|
         bool, message = match.captures
-        Message.create_from_data(message: message, is_positive: bool == '+', data: data)
-        client.say channel: data.channel,
-                   text: Message.response(is_positive)
+        Message.create_from_data(data.text, data)
+        if Message.contains_many?(data.text)
+          client.say channel: data.channel, text: 'So many things! :sweat_smile:'
+        else
+          is_positive = (bool == '+')
+          client.say channel: data.channel, text: Message.response(is_positive)
+        end
       end
     end
   end
