@@ -8,6 +8,13 @@ Retro Ken is a bot for automating your retrospectives with your team. It is base
 
 ![Example](http://i.imgur.com/2zAfyVV.png)
 
+# Install (quick)
+
+To get up and running off your local machine, just [add a new bot](http://slack.com/services/new/bot), then run
+```bash
+SLACK_API_TOKEN=my-token-from-slack RACK_ENV=production rackup config.ru -p 24558
+```
+
 # Commands
 
 Ken expects there to be no more than one Retrospective being referenced at any point. An advantage of this is you can interact with the same retrospective in either one large chat, or via DMs to Ken.
